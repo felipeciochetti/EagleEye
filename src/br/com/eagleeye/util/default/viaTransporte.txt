@@ -1,0 +1,10 @@
+1;01 ;Marítima
+2;02 ;Fluvial
+3;03 ;Lacustre
+4;04 ;Aérea
+5;05 ;Postal
+6;06 ;Ferroviária
+7;07 ;Rodoviária
+8;08 ;Conduto / Rede Transmissão
+9;09 ;Meios Próprios
+10;10 ;Entrada / Saída Ficta
