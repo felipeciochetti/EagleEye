@@ -1,0 +1,217 @@
+#timeLineTableEmb *{
+	background-color: #FFFFFF;
+	border: none;
+}
+
+#timeLineTableEmb{
+	
+	text-align: center;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    border: none;
+}
+
+#timeLineTableEmb caption{
+	text-align: left;
+    font-weight: bold;
+}
+#timeLineTableEmb td{
+    padding: 0px;
+    vertical-align: top;
+    text-align: center;
+    overflow: hidden;
+}
+
+#timeLineTableEmb.tlTable tbody tr td {
+	border: none;
+	border-bottom: none;
+    border-top: none;
+}
+
+#timeLineTableEmb .stgSetinha {
+	display: none;
+}
+
+#timeLineTableEmb .stgTitle {
+	font-weight: bold;
+	text-align: center;
+	color: #696969;
+	font-size: 1em;
+}
+
+#timeLineTableEmb .stgFooter {
+	font-weight: normal;
+	color: #231F20;
+}
+#timeLineTableEmb .stgFooter .date {
+	color: #231F20;
+}
+#timeLineTableEmb .stgFooter.canceled {
+	color: #FF0006;
+}
+#timeLineTableEmb .stgFooter.canceled .date {
+	color: #FF0006;
+}
+
+#timeLineTableEmb .stgTdIcon {
+    width: 60px; height: 40px;
+    text-align: center;
+}
+#timeLineTableEmb *.stgIconEmb {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+    
+    width: 60px; height: 60px;
+    background-color: transparent;
+    background-image: url(../resources/img/spriteGeral.png);
+    background-repeat: no-repeat;
+/*     border: 1px solid #f00; */
+}
+
+#timeLineTableEmb div.bgLine {
+	position: relative;
+	display: block;
+    height: 3px;
+	top: 25px;
+	width: 50px;
+}
+
+#timeLineTableEmb .stgTdIcon div.bgLine {
+	top: 25px;
+} 
+
+#timeLineTableEmb .bgLine.firstStage {
+    margin-left: 30px;
+}
+#timeLineTableEmb .bgLine.lastStage {
+    margin-right: 30px;
+}
+
+#timeLineTableEmb .stgTdConnectionPrev {
+    width: 1px;
+}
+#timeLineTableEmb .stgTdConnectionNext {
+    width: 1px;
+}
+
+#timeLineTableEmb td.stgTdLineBetween {
+}
+
+#timeLineTableEmb .ico.disabled {
+	width:87px; height:17px;
+	visibility: hidden;
+}
+#timeLineTableEmb .ico.waiting {
+	width:87px; height:17px;
+	visibility: hidden;
+}
+#timeLineTableEmb .ico.processing {
+	width:87px; height:17px;
+	background-position:-617px -477px;
+}
+#timeLineTableEmb .ico.completed {
+	width:87px; height:17px;
+	background-position:-617px -502px;
+}
+#timeLineTableEmb .ico.canceled {
+	width:87px; height:15px;
+	background-position:-617px -527px;
+}
+
+#timeLineTableEmb .bglineColorDisabled {
+    background-color: #cccccc;
+}
+#timeLineTableEmb .bglineColorWaiting {
+    background-color: #868686;
+}
+#timeLineTableEmb .bglineColorProcessing {
+    background-color: #edea04;
+}
+#timeLineTableEmb .bglineColorCompleted {
+    background-color: #1df703;
+}
+#timeLineTableEmb .bglineColorCanceled {
+    background-color: #ff0000;
+}
+
+/*
+-webkit-									For Safari 5.1 to 6.0
+-o-											For Opera 11.1 to 12.0
+-moz-										For Firefox 3.6 to 15
+-ms-										For IE 10+
+progid:DXImageTransform.Microsoft.gradient	For IE 9-
+linear-gradient								Standard syntax (must be last)
+*/
+#timeLineTableEmb .bgLineColorCompleted2Waiting {
+    background	: #1df703;
+	background	:                       -moz-linear-gradient(left,                             #1df703 0%,               #868686 100%);
+	background	:                           -webkit-gradient(linear, left right,color-start(0%,#1df703), color-stop(100%,#868686));
+	background	:                    -webkit-linear-gradient(left,                             #1df703 0%,               #868686 100%);
+	background	:                         -o-linear-gradient(left,                             #1df703 0%,               #868686 100%);
+	background	:                        -ms-linear-gradient(left,                             #1df703 0%,               #868686 100%);
+	filter		: progid:DXImageTransform.Microsoft.gradient(startColorstr=                   '#1df703', endColorstr=   '#868686',GradientType=1 );
+	background	:                            linear-gradient(left,                             #1df703 0%,               #868686 100%);
+}
+#timeLineTableEmb .bgLineColorCompleted2Processing {
+    background	: #1df703;
+	background	:                       -moz-linear-gradient(left,                             #1df703 0%,               #edea04 100%);
+	background	:                           -webkit-gradient(linear, left right,color-start(0%,#1df703), color-stop(100%,#edea04));
+	background	:                    -webkit-linear-gradient(left,                             #1df703 0%,               #edea04 100%);
+	background	:                         -o-linear-gradient(left,                             #1df703 0%,               #edea04 100%);
+	background	:                        -ms-linear-gradient(left,                             #1df703 0%,               #edea04 100%);
+	filter		: progid:DXImageTransform.Microsoft.gradient(startColorstr=                   '#1df703', endColorstr=   '#edea04',GradientType=1 );
+	background	:                            linear-gradient(left,                             #1df703 0%,               #edea04 100%);
+}
+#timeLineTableEmb .bgLineColorCompleted2Canceled {
+    background	: #1df703;
+	background	:                       -moz-linear-gradient(left,                             #1df703 0%,               #ff0000 100%);
+	background	:                           -webkit-gradient(linear, left right,color-start(0%,#1df703), color-stop(100%,#ff0000));
+	background	:                    -webkit-linear-gradient(left,                             #1df703 0%,               #ff0000 100%);
+	background	:                         -o-linear-gradient(left,                             #1df703 0%,               #ff0000 100%);
+	background	:                        -ms-linear-gradient(left,                             #1df703 0%,               #ff0000 100%);
+	filter		: progid:DXImageTransform.Microsoft.gradient(startColorstr=                   '#1df703', endColorstr=   '#ff0000',GradientType=1 );
+	background	:                            linear-gradient(left,                             #1df703 0%,               #ff0000 100%);
+}
+
+#timeLineTableEmb .bgLineColorProcessing2Waiting {
+    background	: #edea04;
+	background	:                       -moz-linear-gradient(left,                             #edea04 0%,               #868686 100%);
+	background	:                           -webkit-gradient(linear, left right,color-start(0%,#edea04), color-stop(100%,#868686));
+	background	:                    -webkit-linear-gradient(left,                             #edea04 0%,               #868686 100%);
+	background	:                         -o-linear-gradient(left,                             #edea04 0%,               #868686 100%);
+	background	:                        -ms-linear-gradient(left,                             #edea04 0%,               #868686 100%);
+	filter		: progid:DXImageTransform.Microsoft.gradient(startColorstr=                   '#edea04', endColorstr=   '#868686',GradientType=1 );
+	background	:                            linear-gradient(left,                             #edea04 0%,               #868686 100%);
+}
+
+#timeLineTableEmb .bgLineColorCanceled2Disabled {
+    background	: #ff0000;
+	background	:                       -moz-linear-gradient(left,                             #ff0000 0%,               #cccccc 100%);
+	background	:                           -webkit-gradient(linear, left right,color-start(0%,#ff0000), color-stop(100%,#cccccc));
+	background	:                    -webkit-linear-gradient(left,                             #ff0000 0%,               #cccccc 100%);
+	background	:                         -o-linear-gradient(left,                             #ff0000 0%,               #cccccc 100%);
+	background	:                        -ms-linear-gradient(left,                             #ff0000 0%,               #cccccc 100%);
+	filter		: progid:DXImageTransform.Microsoft.gradient(startColorstr=                   '#ff0000', endColorstr=   '#cccccc',GradientType=1 );
+	background	:                            linear-gradient(left,                             #ff0000 0%,               #cccccc 100%);
+}
+
+
+/* certified */
+.stgIconEmb.certified.disabled     { background-position: -328px  -12px  ;}
+.stgIconEmb.certified.waiting      { background-position: 10px -1100px  ;}
+.stgIconEmb.certified.processing   { background-position: 10px -1000px ;}
+.stgIconEmb.certified.completed    { background-position: 10px -800px ;}
+.stgIconEmb.certified.canceled     { background-position: 10px -900px ;}
+
+#timeLineTableEmb .footerIco {
+	background:url(../resources/img/spriteCP.png) no-repeat;
+	display: inline-block;
+	margin-top: 5px;
+}
+#timeLineTableEmb .footerIco.disabled   {visibility: hidden;}
+#timeLineTableEmb .footerIco.waiting    {visibility: hidden;}
+#timeLineTableEmb .footerIco.processing {width: 87px; height: 17px; background-position: -617px -477px;}
+#timeLineTableEmb .footerIco.completed  {width: 87px; height: 17px; background-position: -617px -502px;}
+#timeLineTableEmb .footerIco.canceled   {width: 87px; height: 15px; background-position: -617px -527px;}
+#timeLineTableEmb .footerIco.prevision  {width: 87px; height: 17px; background-position: -482px      0;}

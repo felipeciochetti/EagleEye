@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<p:dialog id="modalDialogAlterarDados" appendToBody="true" header="Alterar Dados" widgetVar="dlgDialogAlterarDados" modal="true" height="300" width="700" resizable="false">
+			<div align="center">  
+			<p:panel id="id_pane" >
+					<h:form id="frm" >
+					<p:panelGrid id="panelGrid" >
+						<p:row>
+							<p:column>
+								<h:outputLabel id="lbUsuario" value="Usuário:" for="usuario" />
+							</p:column>
+							<p:column>
+								<p:inputText id="usuario" value="#{session.getAttribute('usuario').usuario}"  disabled="true"  />
+							</p:column>
+							<p:column>
+								<h:outputLabel id="lbSenha" value="Senha:" for="senha" />
+							</p:column>
+							<p:column>
+								<p:password id="senha"  value="#{autenticadorMB.repeteSenha}"  maxlength="20" />				
+							</p:column>
+						</p:row>
+						
+						<p:row>
+						<p:column>
+								<h:outputLabel id="lbNSenha" value="Nova Senha:" for="Nsenha" />
+							</p:column>
+							<p:column>
+								<p:password id="Nsenha" value="#{autenticadorMB.novaSenha}"  maxlength="20" />				
+							</p:column>
+							
+							<p:column>
+								<h:outputLabel id="lbCSenha" value="Confirmar Senha:" for="Csenha" />
+							</p:column>
+							<p:column>
+								<p:password id="Csenha"  value="#{autenticadorMB.confNovaSenha}"  maxlength="20" />				
+							</p:column>
+						
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<p:commandButton value="Gravar"  styleClass="btn verde" action="#{autenticadorMB.gravarAlteracaoDados()}" update=":id_pane" />
+							</p:column>
+	
+							<p:column>
+							</p:column>
+							
+							<p:column>
+							</p:column>
+							
+							<p:column>
+							</p:column>
+							
+						</p:row>	
+					</p:panelGrid>
+						</h:form>
+					<p:messages id="msgAlterar" for="msgAlterar"  />
+					</p:panel>
+			</div>
+		</p:dialog>	
+		<p:dialog widgetVar="statusDialog" header="Status" width="200"  
+                  draggable="false" closable="true" resizable="false"
+                  modal="true" appendTo="@(body)">  
+            Processando... 
+        </p:dialog> 
+</html>

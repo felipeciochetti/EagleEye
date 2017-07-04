@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/TemplateDespachante.xhtml"
+xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">>
+
+	<ui:define name="corpo">
+	<p:messages id="messages"  showDetail="true" autoUpdate="true" closable="true" />
+		<h:form id="frmGeral">
+			<ul class="nav nav-pills ">
+  				<li role="presentation" class="active"><a href="CadastroUsuario.xhtml">Inserir</a></li>
+				</ul>
+			<p:dataTable id="tb"  var="usu" scrollable="10px" 
+				emptyMessage=""
+				value="#{usuarioListaBean.list}" 
+				rowsPerPageTemplate="5,10,15"
+				 paginator="true" rows="10"
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+				selectionMode="single" lazy="true" 
+				selection="#{usuarioListaBean.selectUsuario}">
+				<f:facet name="header">Usúario</f:facet>
+				<p:column headerText="Código" width="100" sortBy="#{usu.codigo}" filterBy="#{usu.codigo}">
+					<h:outputText value="#{usu.codigo}" />
+				</p:column>
+				<p:column headerText="Nome" width="300" sortBy="#{usu.nome}" filterBy="#{usu.nome}">
+					<h:outputText value="#{usu.nome}" />
+				</p:column>
+				<p:column headerText="Nivel" width="200" sortBy="#{usu.nivel}" >
+					<h:outputText value="#{ usuarioListaBean.formatarNivel(usu.nivel)}" />
+				</p:column>
+				<p:column headerText="Editar" width="60">
+					<p:commandButton id="edit" value="E" styleClass="btn laranja"
+						 action="AlterarUsuario" process="@this">
+						 </p:commandButton>
+					<p:tooltip for="edit" value="Editar" />
+				</p:column>
+				<p:column headerText="Excluir" width="60">
+					<p:commandButton id="excluir" value="X" styleClass="btn vermelho"
+						 	 oncomplete="myDlgExcluirPessoa.show()" update="@form">
+						 
+					</p:commandButton>
+					<p:tooltip for="excluir" value="Excluir" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		<p:confirmDialog id="dlgExcluirPessoa" appendToBody="true" message="Deseja realmente excluir este registro?"  
+	          			header="Confirmação" severity="alert" widgetVar="myDlgExcluirPessoa">  
+	       <p:commandButton id="confirmYes" value="Sim" styleClass="btn verde" update=":frmGeral:tb" oncomplete="myDlgExcluirPessoa.hide()"  
+	                   actionListener="#{usuarioListaBean.excluir()}" />  
+	       <p:commandButton id="confirmNo" value="Não" styleClass="btn vermelho" onclick="myDlgExcluirPessoa.hide()" type="button" />   
+		</p:confirmDialog>
+		
+	
+	</ui:define>
+</ui:composition>

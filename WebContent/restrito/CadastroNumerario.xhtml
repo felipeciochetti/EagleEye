@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/TemplateDespachante.xhtml">
+
+	<ui:define name="titulo">
+	</ui:define>
+	<ui:define name="corpo">
+		<h:form id="formGeral">
+		<p:focus id="focus" context="id_my_accor" />
+		<p:panel id="id_my_accor" header="Numerário"  styleClass="panel panel-heading  panel-primary" >
+		<p:messages id="messages"  showDetail="true" autoUpdate="true" closable="true" />
+			<div align="center">
+				<p:panelGrid >
+				
+					<p:row>
+        				<p:column>
+								<h:outputLabel  value="Processo" title="moeda" />
+						</p:column>
+						<p:column colspan="3">
+        					<p:autoComplete id="txtprocesso" value="#{numerarioBean.numerario.processo}" maxResults="10" var="processo" completeMethod="#{numerarioBean.completeProcesso}" forceSelection="true" size="100" itemLabel="#{processo.formatadoProcesso}" itemValue="#{processo}" converter="processoConverter" />
+						</p:column>
+					 </p:row>
+					 <p:row>
+        					<p:column colspan="4" styleClass="barraAzul"> Moedas
+            					<p:spacer height="0"/>
+        					</p:column>
+   						</p:row>	
+					<p:row>
+					</p:row>
+					<p:row>
+        				<p:column>
+								<h:outputLabel  value="Moeda Fiscal " title="moeda" />
+						</p:column>
+						<p:column>
+        					<p:autoComplete id="txtmoedaFiscal" value="#{numerarioBean.numerario.moedaFiscal}" maxResults="10" var="moeda" completeMethod="#{numerarioBean.completeMoeda}" forceSelection="true" size="70" itemLabel="#{moeda.formatadoMoeda}" itemValue="#{moeda}" converter="moedaConverter" />
+						</p:column>
+						<p:column>
+								<h:outputLabel  value="Taxa Fiscal " title="moeda" />
+						</p:column>
+						<p:column>
+								<pe:inputNumber id="vlTaxaMoedaFiscal" value="#{numerarioBean.numerario.vlTaxaMoedaFiscal}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+						</p:column>
+					 </p:row>	
+					 
+        		 	<p:row>
+        				<p:column>
+								<h:outputLabel  value="Moeda Fob: " title="moeda" />
+						</p:column>
+						<p:column>
+        					<p:autoComplete id="txtmoeda" value="#{numerarioBean.numerario.moedaFob}" maxResults="10" var="moeda" completeMethod="#{numerarioBean.completeMoeda}" forceSelection="true" size="70" itemLabel="#{moeda.formatadoMoeda}" itemValue="#{moeda}" converter="moedaConverter" />
+						</p:column>
+						<p:column>
+								<h:outputLabel  value="Taxa Fob: " title="moeda" />
+						</p:column>
+						<p:column>
+								<pe:inputNumber id="vlTaxaMoedaFob" value="#{numerarioBean.numerario.vlTaxaMoedaFob}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+					</p:row>	
+					<p:row>
+        				<p:column>
+								<h:outputLabel  value="Moeda Frete " title="moeda" />
+						</p:column>
+						<p:column>
+        					<p:autoComplete id="txtmoedaFrete" value="#{numerarioBean.numerario.moedaFrete}" maxResults="10" var="moeda" completeMethod="#{numerarioBean.completeMoeda}" forceSelection="true" size="70" itemLabel="#{moeda.formatadoMoeda}" itemValue="#{moeda}" converter="moedaConverter" />
+						</p:column>
+						<p:column>
+								<h:outputLabel  value="Taxa Frete " title="moeda" />
+						</p:column>
+						<p:column>
+								<pe:inputNumber id="vlTaxaMoedaFrete" value="#{numerarioBean.numerario.vlTaxaMoedaFrete}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+						</p:column>
+					 </p:row>	
+					 <p:row>
+        				<p:column>
+								<h:outputLabel  value="Moeda Seguro " title="moeda" />
+						</p:column>
+						<p:column>
+        					<p:autoComplete id="txtmoedaSeguro" value="#{numerarioBean.numerario.moedaSeguro}" maxResults="10" var="moeda" completeMethod="#{numerarioBean.completeMoeda}" forceSelection="true" size="70" itemLabel="#{moeda.formatadoMoeda}" itemValue="#{moeda}" converter="moedaConverter" />
+						</p:column>
+						<p:column>
+								<h:outputLabel  value="Taxa Seguro " title="moeda" />
+						</p:column>
+						<p:column>
+								<pe:inputNumber id="vlTaxaMoedaSeguro" value="#{numerarioBean.numerario.vlTaxaMoedaSeguro}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+						</p:column>
+					 </p:row>	
+					 <p:row>
+        					<p:column colspan="4" styleClass="barraAzul"> 
+            					<p:spacer height="0"/>
+        					</p:column>
+   						</p:row>
+					</p:panelGrid>
+				 		<p:panelGrid >
+				 		<p:row>
+        					<p:column colspan="4" styleClass="barraAzul"> 
+            					<p:spacer height="0"/>
+        					</p:column>
+   						</p:row>
+					 <f:facet name="header">
+							 <p:row>
+           						 <p:column></p:column>
+            					 <p:column>Valores Moeda</p:column>
+            					 <p:column>Valores Reais</p:column>
+            					 <p:column>Valores USD</p:column>
+        					</p:row>
+        			</f:facet>		
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Fob: " for="vlFobMoeda" title="fob" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlFobMoeda" value="#{numerarioBean.numerario.vlFobMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlFobReais" value="#{numerarioBean.numerario.vlFobReais}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlFobDolar" value="#{numerarioBean.numerario.vlFobDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Frete Int: " for="vlFreteIntMoeda" title="Frete Int" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlFreteIntMoeda" value="#{numerarioBean.numerario.vlFreteIntMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlFreteIntReais" value="#{numerarioBean.numerario.vlFreteIntReais}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlFreteIntDolar" value="#{numerarioBean.numerario.vlFreteIntDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+								
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Seguro: " for="vlSeguroReais" title="seguro" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlSeguroMoeda" value="#{numerarioBean.numerario.vlSeguroMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlSeguroReais" value="#{numerarioBean.numerario.vlSeguroReais}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlSeguroDolar" value="#{numerarioBean.numerario.vlSeguroDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="CIF (FOB + FRETE + SEGURO): "  title="cif" />
+							</p:column>
+							<p:column>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlCifReais" value="#{numerarioBean.numerario.vlCifReais}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlCifDolar" value="#{numerarioBean.numerario.vlCifDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Valor Aduaneiro: "  title="valor aduaneiro" />
+							</p:column>
+							<p:column>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlAduaneiroReais" value="#{numerarioBean.numerario.vlAduaneiroReais}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlAduaneiroDolar" value="#{numerarioBean.numerario.vlAduaneiroDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+        					<p:column colspan="4" styleClass="barraAzul"> Impostos
+            					<p:spacer height="0"/>
+        					</p:column>
+   						</p:row>
+   						
+   						<p:row>
+							<p:column>
+								<h:outputLabel  value="Taxa Siscomex: "  title="taxa siscomex" />
+							</p:column>
+							<p:column>
+							</p:column>
+							<p:column>
+							    <pe:inputNumber id="vlTxSiscomexReais" value="#{numerarioBean.numerario.vlTxSiscomexReais}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlTxSiscomexDolar" value="#{numerarioBean.numerario.vlTxSiscomexDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Imposto Imp: "  title="impostos importação" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlImpostoImpMoeda" value="#{numerarioBean.numerario.vlImpostoImpMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlImpostoImpReais" value="#{numerarioBean.numerario.vlImpostoImpReais}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlImpostoImpDolar" value="#{numerarioBean.numerario.vlImpostoImpDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Imposto Produtos: "  title="impostos produtos" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlImpostoProdMoeda" value="#{numerarioBean.numerario.vlImpostoProdMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlImpostoProdReais" value="#{numerarioBean.numerario.vlImpostoProdReais}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlImpostoProdDolar" value="#{numerarioBean.numerario.vlImpostoProdDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="PIS: "  title="pis" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlPisMoeda" value="#{numerarioBean.numerario.vlPisMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlPisReais" value="#{numerarioBean.numerario.vlPisReais}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlPisDolar" value="#{numerarioBean.numerario.vlPisDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="COFINS: "  title="cofins" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlCofinsMoeda" value="#{numerarioBean.numerario.vlCofinsMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlCofinsReais" value="#{numerarioBean.numerario.vlCofinsReais}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlCofinsDolar" value="#{numerarioBean.numerario.vlCofinsDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="ICMS: "  title="icms" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlIcmsMoeda" value="#{numerarioBean.numerario.vlIcmsMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlIcmsReais" value="#{numerarioBean.numerario.vlIcmsReais}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlIcmsDolar" value="#{numerarioBean.numerario.vlIcmsDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column colspan="2">
+								<h:outputLabel  value="Total dos Impostos siscomex:"  title="total dos impostos siscomex" />
+							</p:column>
+							<p:column>
+								<h:outputText id="vlTotalImpostosReais" value="#{numerarioBean.numerario.vlTotalImpostosReais}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlTotalImpostosDolar" value="#{numerarioBean.numerario.vlTotalImpostosDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+        					<p:column colspan="4" styleClass="barraAzul"> Despesas
+            					<p:spacer height="0"/>
+        					</p:column>
+   						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Frete Int:"  title="frete internacional" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlDespFreteIntMoeda" value="#{numerarioBean.numerario.vlDespFreteIntMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlDespFreteIntReais" value="#{numerarioBean.numerario.vlDespFreteIntReais}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlDespFreteIntDolar" value="#{numerarioBean.numerario.vlDespFreteIntDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Liberação BL:"  title="liberação de BL" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlLibBlMoeda" value="#{numerarioBean.numerario.vlLibBlMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlLibBlReais" value="#{numerarioBean.numerario.vlLibBlReais}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+								
+							</p:column>
+							<p:column>
+								<h:outputText id="vlLibBlDolar" value="#{numerarioBean.numerario.vlLibBlDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Desconsolidação:"  title="desconsolidação" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlDesconsoMoeda" value="#{numerarioBean.numerario.vlDesconsoMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlDesconsoReais" value="#{numerarioBean.numerario.vlDesconsoReais}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlDesconsoDolar" value="#{numerarioBean.numerario.vlDesconsoDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Taxa ISPS:"  title="taxa isps" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlTxIspsMoeda" value="#{numerarioBean.numerario.vlTxIspsMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlTxIspsReais" value="#{numerarioBean.numerario.vlTxIspsReais}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlTxIspsDolar" value="#{numerarioBean.numerario.vlTxIspsDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Taxa Siscarga:"  title="taxa siscarga" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlTxSiscargaMoeda" value="#{numerarioBean.numerario.vlTxSiscargaMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlTxSiscargaReais" value="#{numerarioBean.numerario.vlTxSiscargaReais}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlTxSiscargaDolar" value="#{numerarioBean.numerario.vlTxSiscargaDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Capatazia:"  title="capatazia" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlCapataziaMoeda" value="#{numerarioBean.numerario.vlCapataziaMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlCapataziaReais" value="#{numerarioBean.numerario.vlCapataziaReais}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlCapataziaDolar" value="#{numerarioBean.numerario.vlCapataziaDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Afrmm:"  title="afrmm" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlAfrmmMoeda" value="#{numerarioBean.numerario.vlAfrmmMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlAfrmmReais" value="#{numerarioBean.numerario.vlAfrmmReais}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlAfrmmDolar" value="#{numerarioBean.numerario.vlAfrmmDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Armazenagem Porto:"  title="armazenagem porto" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlArmazPortoMoeda" value="#{numerarioBean.numerario.vlArmazPortoMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlArmazPortoReais" value="#{numerarioBean.numerario.vlArmazPortoReais}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlArmazPortoDolar" value="#{numerarioBean.numerario.vlArmazPortoDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Transporte Remoção:"  title="transporte remoção" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlTranspRemocaoMoeda" value="#{numerarioBean.numerario.vlTranspRemocaoMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlTranspRemocaoReais" value="#{numerarioBean.numerario.vlTranspRemocaoReais}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlTranspRemocaoDolar" value="#{numerarioBean.numerario.vlTranspRemocaoDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Arm Porto Seco:"  title="armazenagem porto seco" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlArmazPortoSecoMoeda" value="#{numerarioBean.numerario.vlArmazPortoSecoMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlArmazPortoSecoReais" value="#{numerarioBean.numerario.vlArmazPortoSecoReais}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlArmazPortoSecoDolar" value="#{numerarioBean.numerario.vlArmazPortoSecoDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Transporte Entrega:"  title="transporte entrega" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlTranspEntregaMoeda" value="#{numerarioBean.numerario.vlTranspEntregaMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlTranspEntregaReais" value="#{numerarioBean.numerario.vlTranspEntregaReais}"  style="width: 120px" decimalSeparator="," thousandSeparator="." />
+							</p:column>
+							<p:column>
+								<h:outputText id="vlTranspEntregaDolar" value="#{numerarioBean.numerario.vlTranspEntregaDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Desembaraço:"  title="desembaraço" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlDesembaracoMoeda" value="#{numerarioBean.numerario.vlDesembaracoMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlDesembaracoReais" value="#{numerarioBean.numerario.vlDesembaracoReais}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlDesembaracoDolar" value="#{numerarioBean.numerario.vlDesembaracoDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+								<h:outputLabel  value="Assessoria MVW:"  title="mvw" />
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlMvwMoeda" value="#{numerarioBean.numerario.vlMvwMoeda}"  style="width: 120px" decimalSeparator="," thousandSeparator="."/>
+							</p:column>
+							<p:column>
+								<pe:inputNumber id="vlMvwReais" value="#{numerarioBean.numerario.vlMvwReais}"  style="width: 120px" decimalSeparator="," thousandSeparator="." />
+							</p:column>
+							<p:column>
+								<h:outputText id="vlMvwDolar" value="#{numerarioBean.numerario.vlMvwDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column colspan="2">
+								<h:outputLabel  value="Total de Despesas MVW :"  title="mvw" />
+							</p:column>
+							<p:column>
+								<h:outputText id="vlTotalDespesaMvwReais" value="#{numerarioBean.numerario.vlTotalDespesaMvwReais}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlTotalDespesaMvwDolar" value="#{numerarioBean.numerario.vlTotalDespesaMvwDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column colspan="2">
+								<h:outputLabel  value="Total de Despesas + Impostos :"  title="mvw" />
+							</p:column>
+							<p:column>
+								<h:outputText id="vlTotalDespesaImpReais" value="#{numerarioBean.numerario.vlTotalDespesaImpReais}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+							<p:column>
+								<h:outputText id="vlTotalDespesaImpDolar" value="#{numerarioBean.numerario.vlTotalDespesaImpDolar}"  style="width: 120px" decimalSeparator="," thousandSeparator=".">
+								<f:convertNumber groupingUsed="true" minFractionDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:row>
+						
+						
+						
+				</p:panelGrid>
+				</div>
+				
+				
+				
+				
+				</p:panel>
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton action="#{numerarioBean.gravar()}" styleClass="btn verde"
+						value="Gravar" update="@form focus" />
+						<p:commandButton action="#{numerarioBean.calcular()}" styleClass="btn azul"
+						value="Calcular" update="@form focus" />
+					<p:commandButton action="ListaNumerario" ajax="false"
+						value="Cancelar" styleClass="btn vermelho" />
+				</p:toolbarGroup>
+			</p:toolbar>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

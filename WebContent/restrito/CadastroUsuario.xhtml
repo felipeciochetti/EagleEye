@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/TemplateDespachante.xhtml">
+
+	<ui:define name="corpo">
+		<h:form id="formGeral">
+		<p:panel id="id_my_accor_" header="Cadastro de Usuário"  styleClass="panel panel-heading  panel-primary" >
+		<p:messages id="messages"  showDetail="true" autoUpdate="true" closable="true" />
+					<p:panelGrid  id="id_pane">
+						<p:row>
+						<p:column>
+							<h:outputLabel id="lbCodigo" value="Codígo:" for="codigo" />
+							</p:column>
+						<p:column>
+							<p:inputText id="codigo" value="#{usuarioBean.usuario.codigo}" />
+						</p:column>
+						<p:column>
+							<h:outputLabel id="lbDtCadastro" value="Data de Cadastro:" for="dtCadastro" />
+						</p:column>
+						<p:column>
+							<p:calendar id="dtCadastro" disabled="true" value="#{usuarioBean.usuario.dtCadastro}"  pattern="dd/MM/yy"/>
+						</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputLabel id="lbNome" value="Nome:" for="nome" />
+							</p:column>
+							<p:column>
+								<p:inputText id="nome" value="#{usuarioBean.usuario.nome}" style="width: 530px"  />
+							</p:column>
+							<p:column>
+								<h:outputLabel id="lbUsuario" value="Usuário:" for="usuario" />
+							</p:column>
+							<p:column>
+								<p:inputText id="usuario" value="#{usuarioBean.usuario.usuario}"   />
+							</p:column>
+						</p:row>
+						<p:row>
+						<p:column>
+								<h:outputLabel id="lbSenha" value="Senha:" for="senha" />
+							</p:column>
+							<p:column>
+								<p:password id="senha" disabled="true" value="#{usuarioBean.usuario.senha}" redisplay="true" maxlength="20" />				
+							</p:column>
+							<p:column>
+							</p:column>
+							<p:column>
+							</p:column>
+						</p:row>
+						<p:row>
+						<p:column>
+								<h:outputLabel id="lbNovaSenha" value="Nova Senha:" for="novasenha" />
+							</p:column>
+							<p:column>
+								<p:password id="novasenha" value="#{usuarioBean.usuario.novaSenha}" redisplay="true" maxlength="20" />				
+							</p:column>
+						
+							<p:column>
+								<h:outputLabel id="lbConfSenha" value="Confirma Senha:" for="confsenha" />
+							</p:column>
+							<p:column>
+								<p:password id="confsenha" value="#{usuarioBean.usuario.confSenha}" redisplay="true" maxlength="20" />				
+							</p:column>
+							</p:row>
+							<p:row>
+							<p:column>
+								<h:outputLabel id="lbNivel" value="Nivel Usúario:" for="cboTipo" />
+							</p:column>
+							<p:column>
+								<p:selectOneMenu id="cboTipo"  value="#{usuarioBean.usuario.nivel}" >
+									<f:selectItem itemLabel="Administrador" itemValue="A"/>
+									<f:selectItem itemLabel="Usuário" itemValue="U"/>
+									<f:selectItem itemLabel="Cliente" itemValue="C"/>
+									<p:ajax event="change" listener="#{usuarioBean.mudouTipo}" update="clientePanel1 clientePanel2"/>
+								</p:selectOneMenu>			
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Email: " for="email" />
+							</p:column>
+							<p:column>
+								<p:inputText id="email" value="#{usuarioBean.usuario.email}" maxlength="150" style="width: 200px"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+							<h:panelGroup id="clientePanel1">
+								<p:outputLabel  value="Cliente: " for="cliente" title="" rendered="#{usuarioBean.isUsuarioCliente()}"/>
+							</h:panelGroup>
+							</p:column>
+							<p:column>
+							<h:panelGroup id="clientePanel2">
+								<p:autoComplete id="cliente" rendered="#{usuarioBean.isUsuarioCliente()}" value="#{usuarioBean.usuario.cliente}" maxResults="10" var="cliente" completeMethod="#{usuarioBean.completeCliente}" forceSelection="true" size="60" itemLabel="#{cliente.nome}" itemValue="#{cliente}" converter="clienteConverter"/>
+								</h:panelGroup>
+							</p:column>
+							<p:column>
+							</p:column>
+							<p:column>
+							</p:column>
+							</p:row>
+					</p:panelGrid>
+			</p:panel>
+						<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton action="#{usuarioBean.gravar()}" styleClass="btn verde"
+						value="Gravar" update="@form" />
+					<p:commandButton action="ListaUsuario" ajax="false"
+						value="Cancelar" styleClass="btn vermelho" />
+				</p:toolbarGroup>
+			</p:toolbar>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>
+</html>

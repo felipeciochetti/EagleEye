@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/TemplateCliente.xhtml">
+
+	<ui:define name="corpo">
+	<style>
+.ui-panelgrid td {
+    border-width: 0px!important;
+   
+}
+.ui-panelgrid tr {
+    border-width: 0px!important;
+}
+</style>
+		<h:form id="formGeral">
+		<p:panel id="id_my_accor" header="Processo"  styleClass="panel panel-heading  panel-primary" >
+				<div align="center">
+				
+					
+					<p:panelGrid style="width:100%" >
+						
+						<p:row>
+							<p:column >
+								<h:outputLabel  id="lbReferenciaMvw" value="Ref MVW:" for="referenciaMvw" />
+							</p:column>
+							<p:column >
+								<h:outputText id="referenciaMvw" value="#{processoViewBean.processo.referenciaMvw}" />
+							</p:column>
+							<p:column  style="vertical-align:center;">
+							<h:outputLabel value="Parametrização:" for="param"  />
+							</p:column>
+							<p:column>
+        						<h:graphicImage id="param" library="img" name="parametrizacao/#{processoViewBean.processo.parametrizacao}.png" width="30" heigth="20"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column >
+								<h:outputLabel  id="lbCliente" value="Cliente:" for="cliente" />
+							</p:column>
+							<p:column >
+								<h:outputText id="cliente" style="width: 930px" value="#{processoViewBean.processo.cliente.nome}" />
+							</p:column>
+								<p:column >
+								<h:outputLabel id="lbRef" value="Ref Cliente:" for="refCliente" />
+							</p:column>
+							<p:column >
+								<h:outputText id="refCliente" value="#{processoViewBean.processo.referenciaCliente}" />
+							</p:column>
+					</p:row>
+					
+					<p:row>
+							<p:column >
+								<h:outputLabel  id="lbViaTransp" value="Via Transporte:" for="viaTransp" />
+							</p:column>
+							<p:column >
+								<h:outputText id="viaTransp" value="#{processoViewBean.processo.viaTransporte.viaTransporte}" />
+							</p:column>
+								<p:column >
+								<h:outputLabel id="lbExportador" value="Exportador:" for="exportador" />
+							</p:column>
+							<p:column >
+								<h:outputText id="exportador" value="#{processoViewBean.processo.exportador.nome}" />
+							</p:column>
+					</p:row>
+					
+					
+					<p:row>
+							<p:column >
+								<h:outputLabel  id="lbHouse" value="House:"  />
+							</p:column>
+							<p:column >
+								<h:outputText id="house" value="#{processoViewBean.processo.house}"/>
+							</p:column>
+							<p:column >
+								<h:outputLabel  id="lbMaster" value="Master:"  />
+							</p:column>
+							<p:column>
+								<h:outputText id="master" value="#{processoViewBean.processo.master}" />
+							</p:column>
+						</p:row>
+					
+						<p:row>
+							<p:column >
+								<h:outputLabel id="lbDtPrevEmbarque" value="Previsão Embarque:" for="dtPrevEmbarque" />
+							</p:column>
+							<p:column>
+								<h:outputText id="dtPrevEmbarque" value="#{ processoViewBean.formataData(processoViewBean.processo.dtPrevisaoEmbarque)}"/>
+							</p:column>
+							<p:column >
+								<h:outputLabel id="lbEmbarque" value="Embarque:"  />
+							</p:column>
+							<p:column>
+								<h:outputText id="embarque" value="#{ processoViewBean.formataData(processoViewBean.processo.dtEmbarque)}"/>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column >
+								<h:outputLabel id="lbDtPrevChegada" value="Previsão Chegada:" for="dtPrevChegada" />
+							</p:column>
+							<p:column>
+								<h:outputText id="dtPrevChegada" value="#{ processoViewBean.formataData(processoViewBean.processo.dtPrevisaoChegada)}"/>
+							</p:column>
+							<p:column >
+								<h:outputLabel id="lbChegada" value="Chegada:"  />
+							</p:column>
+							<p:column>
+								<h:outputText id="chegada" value="#{ processoViewBean.formataData(processoViewBean.processo.dtChegada)}" />
+							</p:column>
+						</p:row>	
+						
+						<p:row>
+							<p:column >
+								<h:outputLabel value="Origem: " for="origem" />
+							</p:column>
+							<p:column>
+								<h:outputText id="origem" value="#{processoViewBean.processo.paisOrigem.nome}" />
+							</p:column>
+							<p:column >
+								<h:outputLabel value="Destino: " for="destino" />
+							</p:column>
+							<p:column>
+								<h:outputText id="destino" value="#{processoViewBean.processo.paisDestino.nome}" />
+							</p:column>
+						</p:row>
+	
+						<p:row>
+							<p:column >
+								<p:commandLink  style="color:#f97910" icon="baixar" rendered="#{ not empty processoViewBean.processo.documentoProcesso}"  oncomplete="dlgModalDialogBaixarArq.show()" update=":modalDialogOpenLink">
+        							<h:outputText value="documentos anexos" />
+    							</p:commandLink>
+							</p:column>
+							<p:column>
+							</p:column>
+							
+							<p:column >
+							</p:column>
+
+							<p:column>
+							</p:column>
+						</p:row>
+								
+						<p:row>
+							<p:column>
+							<button class="btn btn-info" type="button" onclick="dlgLinhaTempoDoc.show()">ver detalhes documentos</button>
+							</p:column>
+							
+							<p:column>
+							</p:column>
+        						
+							<p:column >
+							<button class="btn btn-info" type="button" onclick="dlgLinhaTempoEmb.show()">ver detalhes embarque</button>
+							</p:column>
+
+							<p:column>
+							</p:column>
+						</p:row>
+						
+						<p:row>
+							<p:column>
+							</p:column>
+							
+							<p:column>
+							</p:column>
+        						
+							<p:column>
+							
+							</p:column>
+
+							<p:column>
+							</p:column>
+						</p:row>
+						
+						
+						
+				</p:panelGrid>	
+					
+					<!--   <h:outputText value="#{processoViewBean.linhaTempoDocumento}" escape="false"/> -->
+		</div>
+		</p:panel>
+	</h:form>
+	<p:dialog id="modaldlgLinhaTempoDoc"  appendToBody="true"  header="Linha Tempo" widgetVar="dlgLinhaTempoDoc" modal="true" >
+			<p:panel>
+			<h:outputText value="#{processoViewBean.linhaTempoDocumento}" escape="false"/>
+			</p:panel>
+		</p:dialog>
+		<p:dialog id="modaldlgLinhaTempoEmb"  appendToBody="true"  header="Linha Tempo" widgetVar="dlgLinhaTempoEmb" modal="true" >
+			<p:panel>
+			<h:outputText value="#{processoViewBean.linhaTempoEmbarque}" escape="false"/>
+			</p:panel>
+		</p:dialog>
+	<p:dialog id="modalDialogBaixarArq" appendToBody="true" header="Baixar" widgetVar="dlgModalDialogBaixarArq" modal="true"  resizable="false">
+			<div align="center">  
+			<p:panelGrid style="width:100%" >
+			<p:row>
+			<p:column  colspan="4"  style="text-align: center">
+				<p:dataTable id="dt_listaArquivosAnexos" value="#{processoViewBean.documentoProcesso}" var="doc" border="1" >
+					 <!--   <f:facet name="header">Lista de Anexos</f:facet> -->
+					<p:column headerText="Nome" width="200" style="text-align: center">
+							<h:outputText value="#{doc.nome}" />	
+					</p:column>
+					<p:column headerText="Tipo" width="80" style="text-align: center">
+							<h:outputText value="#{ processoViewBean.getTipoDocumentoFormatado(doc.tipoDocumento)}" />	
+					</p:column>
+					<p:column headerText="Baixar" width="80" >
+						<p:commandButton   value="B" styleClass="btn verde" actionListener="#{processoViewBean.baixarArquivo(doc.nome)}" />
+					</p:column>
+				</p:dataTable>
+				</p:column>
+				</p:row>
+				</p:panelGrid>
+			</div>
+		</p:dialog>	
+	<p:dialog id="modalDialogOpenLink" appendToBody="true" header="Baixar" widgetVar="dlgOpenLink" modal="true" height="120" width="220" resizable="false">
+			<div align="center">  
+				<p>	<br></br>
+				<h:outputLink value="#{processoViewBean.linkArquivoAnexo}" target="_blank" >
+				<h:graphicImage library="img" name="baixar.png"  width="100" height="60" title="ABRIR ARQUIVO"/>
+				</h:outputLink>
+				</p>
+			</div>
+		</p:dialog>	
+</ui:define>
+</ui:composition>
+
+</html>

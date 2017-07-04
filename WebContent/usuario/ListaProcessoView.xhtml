@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/TemplateCliente.xhtml"
+xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">>
+
+	<ui:define name="corpo">
+		<h:form id="frmGeral">
+		 
+		<p:dataTable id="tb"   value="#{processoListaViewBean.lista}"   var="proc" border="1" emptyMessage="">
+			<f:facet name="header">
+            <p:outputPanel style="float:right;">
+     			<h:outputLabel  id="lbLocal" value="Referência MVW:"  />
+							<p:inputText id="filtroText" value="#{processoListaViewBean.valorPesquisa}"/>
+							<p:commandButton id="pesq" icon="visualizar"
+							 action="#{processoListaViewBean.pesquisarProcesso}" update="tb">
+						 	</p:commandButton>
+			
+		       </p:outputPanel>
+       	 </f:facet>
+       			 <p:column headerText="Ref MVW" width="100"   >
+					<h:outputText value="#{proc.referenciaMvw}"  />
+				</p:column>
+				<p:column headerText="House" width="100" >
+					<h:outputText value="#{proc.house}"   />
+				</p:column>
+				<p:column headerText="Master" width="100" >
+					<h:outputText value="#{proc.master}" />
+				</p:column>
+				<p:column headerText="Invoice" width="100"  >
+					<h:outputText value="#{proc.invoice}" />
+				</p:column>
+				<p:column headerText="Abertura" width="90"  >
+					<h:outputText value="#{processoBean.formataData(proc.dtAbertura)}" pattern="dd/MM/yy" />
+				</p:column>
+				<p:column headerText="Parametrização" width="130"  >
+					<h:graphicImage id="param" library="img" name="parametrizacao/#{proc.parametrizacao}.png" width="30" heigth="20"/>
+				</p:column>
+				<p:column headerText="Visualizar" width="90">
+					<p:commandButton id="visualizar" icon="visualizar"
+						 action="ProcessoView" process="@this">
+						 </p:commandButton>
+					<p:tooltip for="visualizar" value="Vizualizar" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

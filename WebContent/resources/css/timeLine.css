@@ -1,0 +1,251 @@
+#timeLineTable *{
+	background-color: #FFFFFF;
+	border: none;
+}
+
+#timeLineTable{
+	width: 100%;
+	text-align: center;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    border: none;
+}
+
+#timeLineTable caption{
+	text-align: left;
+    font-weight: bold;
+}
+#timeLineTable td{
+    padding: 0px;
+    vertical-align: top;
+    text-align: center;
+    overflow: hidden;
+}
+
+#timeLineTable.tlTable tbody tr td {
+	border: none;
+	border-bottom: none;
+    border-top: none;
+}
+
+#timeLineTable .stgSetinha {
+	display: none;
+}
+
+#timeLineTable .stgTitle {
+	font-weight: bold;
+	text-align: center;
+	color: #696969;
+	font-size: 1em;
+}
+
+#timeLineTable .stgFooter {
+	font-weight: normal;
+	color: #231F20;
+}
+#timeLineTable .stgFooter .date {
+	color: #231F20;
+}
+#timeLineTable .stgFooter.canceled {
+	color: #FF0006;
+}
+#timeLineTable .stgFooter.canceled .date {
+	color: #FF0006;
+}
+
+#timeLineTable .stgTdIcon {
+    width: 60px; height: 40px;
+    text-align: center;
+}
+#timeLineTable *.stgIcon {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+    
+    width: 60px; height: 40px;
+    background-color: transparent;
+    background-image: url(../resources/img/sprite-acom.png);
+    background-repeat: no-repeat;
+/*     border: 1px solid #f00; */
+}
+
+#timeLineTable div.bgLine {
+	position: relative;
+	display: block;
+    height: 3px;
+	top: 25px;
+}
+
+#timeLineTable .stgTdIcon div.bgLine {
+	top: 25px;
+} 
+
+#timeLineTable .bgLine.firstStage {
+    margin-left: 30px;
+}
+#timeLineTable .bgLine.lastStage {
+    margin-right: 30px;
+}
+
+#timeLineTable .stgTdConnectionPrev {
+    width: 1px;
+}
+#timeLineTable .stgTdConnectionNext {
+    width: 1px;
+}
+
+#timeLineTable td.stgTdLineBetween {
+}
+
+#timeLineTable .ico.disabled {
+	width:87px; height:17px;
+	visibility: hidden;
+}
+#timeLineTable .ico.waiting {
+	width:87px; height:17px;
+	visibility: hidden;
+}
+#timeLineTable .ico.processing {
+	width:87px; height:17px;
+	background-position:-617px -477px;
+}
+#timeLineTable .ico.completed {
+	width:87px; height:17px;
+	background-position:-617px -502px;
+}
+#timeLineTable .ico.canceled {
+	width:87px; height:15px;
+	background-position:-617px -527px;
+}
+
+#timeLineTable .bglineColorDisabled {
+    background-color: #cccccc;
+}
+#timeLineTable .bglineColorWaiting {
+    background-color: #868686;
+}
+#timeLineTable .bglineColorProcessing {
+    background-color: #edea04;
+}
+#timeLineTable .bglineColorCompleted {
+    background-color: #1df703;
+}
+#timeLineTable .bglineColorCanceled {
+    background-color: #ff0000;
+}
+
+/*
+-webkit-									For Safari 5.1 to 6.0
+-o-											For Opera 11.1 to 12.0
+-moz-										For Firefox 3.6 to 15
+-ms-										For IE 10+
+progid:DXImageTransform.Microsoft.gradient	For IE 9-
+linear-gradient								Standard syntax (must be last)
+*/
+#timeLineTable .bgLineColorCompleted2Waiting {
+    background	: #1df703;
+	background	:                       -moz-linear-gradient(left,                             #1df703 0%,               #868686 100%);
+	background	:                           -webkit-gradient(linear, left right,color-start(0%,#1df703), color-stop(100%,#868686));
+	background	:                    -webkit-linear-gradient(left,                             #1df703 0%,               #868686 100%);
+	background	:                         -o-linear-gradient(left,                             #1df703 0%,               #868686 100%);
+	background	:                        -ms-linear-gradient(left,                             #1df703 0%,               #868686 100%);
+	filter		: progid:DXImageTransform.Microsoft.gradient(startColorstr=                   '#1df703', endColorstr=   '#868686',GradientType=1 );
+	background	:                            linear-gradient(left,                             #1df703 0%,               #868686 100%);
+}
+#timeLineTable .bgLineColorCompleted2Processing {
+    background	: #1df703;
+	background	:                       -moz-linear-gradient(left,                             #1df703 0%,               #edea04 100%);
+	background	:                           -webkit-gradient(linear, left right,color-start(0%,#1df703), color-stop(100%,#edea04));
+	background	:                    -webkit-linear-gradient(left,                             #1df703 0%,               #edea04 100%);
+	background	:                         -o-linear-gradient(left,                             #1df703 0%,               #edea04 100%);
+	background	:                        -ms-linear-gradient(left,                             #1df703 0%,               #edea04 100%);
+	filter		: progid:DXImageTransform.Microsoft.gradient(startColorstr=                   '#1df703', endColorstr=   '#edea04',GradientType=1 );
+	background	:                            linear-gradient(left,                             #1df703 0%,               #edea04 100%);
+}
+#timeLineTable .bgLineColorCompleted2Canceled {
+    background	: #1df703;
+	background	:                       -moz-linear-gradient(left,                             #1df703 0%,               #ff0000 100%);
+	background	:                           -webkit-gradient(linear, left right,color-start(0%,#1df703), color-stop(100%,#ff0000));
+	background	:                    -webkit-linear-gradient(left,                             #1df703 0%,               #ff0000 100%);
+	background	:                         -o-linear-gradient(left,                             #1df703 0%,               #ff0000 100%);
+	background	:                        -ms-linear-gradient(left,                             #1df703 0%,               #ff0000 100%);
+	filter		: progid:DXImageTransform.Microsoft.gradient(startColorstr=                   '#1df703', endColorstr=   '#ff0000',GradientType=1 );
+	background	:                            linear-gradient(left,                             #1df703 0%,               #ff0000 100%);
+}
+
+#timeLineTable .bgLineColorProcessing2Waiting {
+    background	: #edea04;
+	background	:                       -moz-linear-gradient(left,                             #edea04 0%,               #868686 100%);
+	background	:                           -webkit-gradient(linear, left right,color-start(0%,#edea04), color-stop(100%,#868686));
+	background	:                    -webkit-linear-gradient(left,                             #edea04 0%,               #868686 100%);
+	background	:                         -o-linear-gradient(left,                             #edea04 0%,               #868686 100%);
+	background	:                        -ms-linear-gradient(left,                             #edea04 0%,               #868686 100%);
+	filter		: progid:DXImageTransform.Microsoft.gradient(startColorstr=                   '#edea04', endColorstr=   '#868686',GradientType=1 );
+	background	:                            linear-gradient(left,                             #edea04 0%,               #868686 100%);
+}
+
+#timeLineTable .bgLineColorCanceled2Disabled {
+    background	: #ff0000;
+	background	:                       -moz-linear-gradient(left,                             #ff0000 0%,               #cccccc 100%);
+	background	:                           -webkit-gradient(linear, left right,color-start(0%,#ff0000), color-stop(100%,#cccccc));
+	background	:                    -webkit-linear-gradient(left,                             #ff0000 0%,               #cccccc 100%);
+	background	:                         -o-linear-gradient(left,                             #ff0000 0%,               #cccccc 100%);
+	background	:                        -ms-linear-gradient(left,                             #ff0000 0%,               #cccccc 100%);
+	filter		: progid:DXImageTransform.Microsoft.gradient(startColorstr=                   '#ff0000', endColorstr=   '#cccccc',GradientType=1 );
+	background	:                            linear-gradient(left,                             #ff0000 0%,               #cccccc 100%);
+}
+
+/* order */
+.stgIcon.order.disabled         { background-position: -2px    -12px  ;}
+.stgIcon.order.waiting          { background-position: -2px    -76px  ;}
+.stgIcon.order.processing       { background-position: -2px    -142px ;}
+.stgIcon.order.completed        { background-position: -2px    -206px ;}
+.stgIcon.order.canceled         { background-position: -2px    -271px ;}
+
+/* payment */
+.stgIcon.payment.disabled       { background-position: -67px   -12px  ;}
+.stgIcon.payment.waiting        { background-position: -67px   -76px  ;}
+.stgIcon.payment.processing     { background-position: -67px   -142px ;}
+.stgIcon.payment.completed      { background-position: -67px   -206px ;}
+.stgIcon.payment.canceled       { background-position: -67px   -271px ;}
+.stgIcon.payment.warning        { background-position: -67px   -336px ;}
+
+/* preparation */
+.stgIcon.preparation.disabled   { background-position: -132px  -12px  ;}
+.stgIcon.preparation.waiting    { background-position: -132px  -76px  ;}
+.stgIcon.preparation.processing { background-position: -132px  -142px ;}
+.stgIcon.preparation.completed  { background-position: -132px  -206px ;}
+.stgIcon.preparation.canceled   { background-position: -132px  -271px ;}
+
+/* transport */
+.stgIcon.transport.disabled     { background-position: -197px  -12px  ;}
+.stgIcon.transport.waiting      { background-position: -197px  -76px  ;}
+.stgIcon.transport.processing   { background-position: -197px  -142px ;}
+.stgIcon.transport.completed    { background-position: -197px  -206px ;}
+.stgIcon.transport.canceled     { background-position: -197px  -271px ;}
+
+/* delivered */
+.stgIcon.delivered.disabled     { background-position: -261px  -12px  ;}
+.stgIcon.delivered.waiting      { background-position: -261px  -76px  ;}
+.stgIcon.delivered.processing   { background-position: -261px  -142px ;}
+.stgIcon.delivered.completed    { background-position: -261px  -206px ;}
+.stgIcon.delivered.canceled     { background-position: -261px  -271px ;}
+
+/* certified */
+.stgIcon.certified.disabled     { background-position: -328px  -12px  ;}
+.stgIcon.certified.waiting      { background-position: -328px  -76px  ;}
+.stgIcon.certified.processing   { background-position: -328px  -142px ;}
+.stgIcon.certified.completed    { background-position: -328px  -206px ;}
+.stgIcon.certified.canceled     { background-position: -328px  -271px ;}
+
+#timeLineTable .footerIco {
+	background:url(../resources/img/spriteCP.png) no-repeat;
+	display: inline-block;
+	margin-top: 5px;
+}
+#timeLineTable .footerIco.disabled   {visibility: hidden;}
+#timeLineTable .footerIco.waiting    {visibility: hidden;}
+#timeLineTable .footerIco.processing {width: 87px; height: 17px; background-position: -617px -477px;}
+#timeLineTable .footerIco.completed  {width: 87px; height: 17px; background-position: -617px -502px;}
+#timeLineTable .footerIco.canceled   {width: 87px; height: 15px; background-position: -617px -527px;}
+#timeLineTable .footerIco.prevision  {width: 87px; height: 17px; background-position: -482px      0;}

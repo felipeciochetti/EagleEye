@@ -1,0 +1,39 @@
+.add {  
+background-image:url("../resources/icons/add.png") !important;  
+}    
+.cross {  
+background-image:url("../resources/icons/cross.png") !important;  
+}
+.edit{  
+background-image:url("../resources/icons/page_white_edit.png") !important;  
+}
+.cancelar{  
+background-image:url("../resources/icons/cancel.png") !important;  
+}         
+.salvar{  
+background-image:url("../resources/icons/accept.png") !important;  
+}    
+.anexo{  
+background-image:url("../resources/icons/attach.png") !important;  
+}
+.baixar{  
+background-image:url("../resources/icons/arrow_down.png") !important;  
+}
+.entrarSistema{  
+background-image:url("../resources/icons/door_in.png") !important;  
+}
+.enviarEmail{  
+background-image:url("../resources/icons/email_go.png") !important;  
+}
+.visualizar{
+background-image:url("../resources/icons/zoom.png") !important;	
+}
+.addCliente{
+background-image:url("../resources/icons/user_add.png") !important;	
+}
+.navegador{  
+background-image:url("../resources/icons/navegador.ico") !important;  
+}
+
+
+

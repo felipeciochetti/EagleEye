@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+		<h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+        <h:outputStylesheet name="css/dashboard.css" />
+		<h:outputStylesheet library="css" name="icones.css" />
+		<h:outputStylesheet library="css" name="login.css" />
+		<title>Login</title>
+	</h:head>
+	<h:body>
+		<div id="divCenter" align="center">
+			<h:form id="frm" >
+				<h:graphicImage library="img" name="logomvw.png" />
+				<h:graphicImage library="img" name="logo.png" />
+				<p:focus context="logar"/>
+				  
+				<p:panelGrid id="panelGrid" >
+					<p:row>
+						<p:column>
+							<h4 align="right">Usuário: </h4>
+						</p:column>
+						<p:column>
+							<p:inputText id="txtUsuario" value="#{autenticadorMB.usuario}" maxlength="20"/>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>						
+							<h4 align="right">Senha: </h4>
+						</p:column>
+						<p:column>
+							<p:password id="txtSenha" value="#{autenticadorMB.senha}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>						
+						</p:column>
+						<p:column >
+						<h:commandLink id="logar" action="#{autenticadorMB.entrar}" update="msg">
+						<h:graphicImage library="img" name="login.png" width="100%"/>
+							</h:commandLink>
+						</p:column>
+						
+					</p:row>
+					<p:row>
+						<p:column>						
+						</p:column>
+						<p:column style="text-align:center" >
+						<!-- <button class="btn btn-danger" type="button" onclick="dlgArquivosAnexos.show()">Esqueceu senha</button>
+						-->
+						<p:commandLink id="ajax"  oncomplete="dlgArquivosAnexos.show()" >
+        					<h:outputText value="Esqueceu senha" />  
+    					</p:commandLink>
+    					</p:column>
+						
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<p:messages id="msg" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</h:form>
+		<p:dialog id="modalDialogAnexos"   appendToBody="true"  header="Recuperar Senha" widgetVar="dlgArquivosAnexos"  height="150" width="600">
+			<p:panel id="panArquivosAnexos" >
+			<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
+				<p:messages id="msgRecuperar" for="msgRecuperar"  />
+				<h:form>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Email: " for="txtEmail"/>
+						</p:column>
+						<p:column>
+							<p:inputText id="txtEmail" value="#{autenticadorMB.emailRecuperarSenha}" style="width:300px" maxlength="50"  />
+						</p:column>
+						<p:column>
+							<p:commandButton value="Enviar" icon="enviarEmail" action="#{autenticadorMB.enviarEmailRecuperarSenha}" update=":panArquivosAnexos" >
+							</p:commandButton>
+						</p:column>
+					</p:row>
+				</h:form>
+				</p:panel>
+				</p:dialog>	
+				<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+   				<h:graphicImage library="img" name="ajaxloadingbar.gif"/>
+				</p:dialog>
+		</div>
+	</h:body>
+</f:view>
+</html>

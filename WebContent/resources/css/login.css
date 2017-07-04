@@ -1,0 +1,17 @@
+.ui-panelgrid td {
+    border-width: 0px!important;
+}
+.ui-panelgrid tr {
+    border-width: 0px!important;
+}
+#divCenter { 
+                width: 400px; 
+                height: 150px; 
+                left: 50%; 
+                margin: -130px 0 0 -210px; 
+                padding:10px;
+                position: absolute; 
+                top: 40%; 
+                background-color: #ffffff;
+                
+}   

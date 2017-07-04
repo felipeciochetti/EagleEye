@@ -1,0 +1,24 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <ui:include src="menuCliente.xhtml" />
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"> 
+                <div align="center">
+				<!--  <h:graphicImage  align="center" library="img" name="logomvw.png" /> -->
+				<h:graphicImage align="center" library="img" name="logo.png" />
+				</div>                   
+                <!--  <h:graphicImage style="float:right;" library="img" name="logo-mvwIndex.png" /> -->
+                    <ui:insert name="corpo" /> 
+                </div>
+            </div>
+        </div>
+    </ui:composition>
+</html>

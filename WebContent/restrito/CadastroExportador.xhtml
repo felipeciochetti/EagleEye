@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/TemplateDespachante.xhtml">
+
+	<ui:define name="corpo">
+		<h:form id="formGeral">
+		<p:panel id="id_my_accor" header="Cadastro Exportador"  styleClass="panel panel-heading  panel-primary" >
+		<p:messages id="messages"  showDetail="true" autoUpdate="true" closable="true" />
+			<div align="center">
+					<p:panelGrid >
+						<p:row>
+						<p:column>
+							<h:outputLabel id="lbCodigo" value="Codígo:" for="codigo" />
+							</p:column>
+						<p:column>
+							<p:inputText id="codigo" value="#{exportadorBean.exportador.codigo}" maxlength="6"  />
+						</p:column>
+						<p:column>
+							<h:outputLabel id="lbDtCadastro" value="Data de Cadastro:" for="dtCadastro" />
+						</p:column>
+						<p:column>
+							<p:calendar id="dtCadastro" disabled="true" value="#{exportadorBean.exportador.dtCadastro}"  pattern="dd/MM/yy"/>
+						</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputLabel id="lbNome" value="Nome:" for="nome" />
+							</p:column>
+							<p:column>
+								<p:inputText id="nome" value="#{exportadorBean.exportador.nome}" style="width: 530px"/>
+							</p:column>
+							<p:column>
+								<h:outputLabel id="lbCnpj" value="Cnpj:" for="cnpj" />
+							</p:column>
+							<p:column>
+								<p:inputMask id="cnpj"  value="#{exportadorBean.exportador.cnpj}" mask="99.999.999/9999-99" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Endereço: " for="endereco" />
+							</p:column>
+							<p:column>
+								<p:inputText id="endereco" value="#{exportadorBean.exportador.endereco}" maxlength="150" style="width: 530px"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Cidade: " for="cidade" />
+							</p:column>
+							<p:column>
+								<p:inputText id="cidade" value="#{exportadorBean.exportador.cidade}" maxlength="15"/>
+							</p:column>
+							</p:row>
+							<p:row>
+							<p:column>
+								<p:outputLabel value="Email: " for="email" />
+							</p:column>
+							<p:column>
+								<p:inputText id="email" value="#{exportadorBean.exportador.email}" maxlength="150" style="width: 265px"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Referência: " for="referencia" title="Referência do exportador"/>
+							</p:column>
+							<p:column>
+								<p:inputText id="referencia" value="#{exportadorBean.exportador.referencia}" maxlength="30" />
+							</p:column>
+							</p:row>
+							<p:row>
+							<p:column>
+								<p:outputLabel value="Telefone: " for="telefone" />
+							</p:column>
+							<p:column>
+								<p:inputMask id="telefone" value="#{exportadorBean.exportador.telefone}" mask="(99) 9999-99999"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Ativo:" for="ativo" />
+							</p:column>
+							<p:column>
+								<p:selectBooleanCheckbox id="ativo" value="#{exportadorBean.exportador.ativo}" />
+							</p:column>
+						</p:row>
+							<p:row>
+        				<p:column colspan="6" styleClass="barraAzul"> Contatos
+            				<p:spacer height="0"/>
+        				</p:column>
+   					 </p:row>
+					<p:row>
+					<p:column colspan="6">
+						<p:commandButton  action="#{exportadorBean.inserirExportadorContato()}" update=":formGeral:id_my_accor"  value="Inserir" styleClass="btn azul"/> 
+					</p:column>
+					</p:row>
+				<p:row>
+				<p:column  colspan="4"> 
+					<p:tabView activeIndex="#{exportadorBean.index}">
+				<p:tab title="Lista">
+					<p:dataTable var="car" value="#{exportadorBean.exportadorContato}">
+    					<p:column headerText="Código" width="70">
+        					<h:outputText value="#{car.codigo}" />
+    					</p:column>
+    					<p:column headerText="Nome" width="80">
+        					<h:outputText value="#{car.nome}" />
+    					</p:column>
+    					<p:column headerText="Email" width="80">
+        					<h:outputText value="#{car.email}" />
+    					</p:column>
+    					<p:column headerText="Fone" width="70">
+        					<h:outputText value="#{car.telefone}" />
+    					</p:column>
+    					<p:column headerText="Editar" width="60" style="text-align: center">
+							<p:commandButton id="edit" icon="edit"
+							 action="#{exportadorBean.editarPessoaContato(car)}" update="@form" />
+							<p:tooltip for="edit" value="Editar" />
+						</p:column>
+    					<p:column headerText="Excluir" width="60">
+							<p:commandButton id="excluir" icon="cross"
+						 		action="#{exportadorBean.excluirPessoaContato(car)}"  update="@form">
+							</p:commandButton>
+					<p:tooltip for="excluir" value="Excluir" />
+				</p:column>
+    				</p:dataTable>
+				</p:tab>
+				<p:tab title="Detalhes" rendered="#{exportadorBean.habilitarDetalhesContato()}" >
+					<p:panelGrid >
+						<p:row>
+						<p:column>
+							<h:outputLabel id="lbCodigocont" value="Codígo:" for="codigoCont" />
+							</p:column>
+						<p:column>
+							<p:inputText id="codigoCont" value="#{exportadorBean.exportadorContatoNew.codigo}"  />
+						</p:column>
+						<p:column>
+							<h:outputLabel id="lbNomeCont" value="Nome:" for="nomeCont" />
+						</p:column>
+						<p:column>
+							<p:inputText id="nomeCont" value="#{exportadorBean.exportadorContatoNew.nome}" />
+						</p:column>
+						</p:row>
+						<p:row>
+						<p:column>
+							<h:outputLabel id="lbEmailCont" value="Email:" for="emailCont" />
+						</p:column>
+						<p:column>
+							<p:inputText id="emailCont" value="#{exportadorBean.exportadorContatoNew.email}" />
+						</p:column>
+						<p:column>
+							<h:outputLabel id="lbDepCont" value="Departamento:" for="depCont" />
+						</p:column>
+						<p:column>
+							<p:inputText id="depCont" value="#{exportadorBean.exportadorContatoNew.departamento}" />
+						</p:column>
+						</p:row>
+						<p:row>
+						<p:column>
+							<h:outputLabel id="lbTelefoneCont" value="Telefone Com:" for="telefoneCont" />
+						</p:column>
+						<p:column>
+							<p:inputMask id="telefoneCont" value="#{exportadorBean.exportadorContatoNew.telefone}" mask="(99) 9999-9999"/>
+						</p:column>
+						<p:column>
+							<h:outputLabel id="lbTelefoneCelCont" value="Telefone Cel:" for="telefoneCelCont" />
+						</p:column>
+						<p:column>
+							<p:inputMask id="telefoneCelCont" value="#{exportadorBean.exportadorContatoNew.celular}" mask="(99) 9999-9999"/>
+						</p:column>
+						</p:row>
+						<p:row>
+						<p:column>
+								<p:outputLabel value="Receber Email Status: " for="emailStatus" />
+							</p:column>
+							<p:column>
+								<p:selectBooleanCheckbox id="emailStatus" value="#{exportadorBean.exportadorContatoNew.receberEmail}" />
+							</p:column>
+						<p:column>
+						</p:column>
+						<p:column>
+						</p:column>
+						</p:row>
+						<p:row>
+						<p:column>
+							<p:commandButton action="#{exportadorBean.gravarPessoaContato()}"  value="Gravar" styleClass="btn verde" update=":formGeral:id_my_accor" />
+							</p:column>
+							</p:row>
+						</p:panelGrid>
+				</p:tab>
+				</p:tabView>
+				</p:column>
+				</p:row>
+				</p:panelGrid>				
+			</div>
+			</p:panel>
+						<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton action="#{exportadorBean.gravar()}" styleClass="btn verde"
+						value="Gravar" update="@form" />
+					<p:commandButton action="ListaExportador?faces-redirect=true" ajax="false"
+						value="Cancelar" styleClass="btn vermelho" />
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+		</h:form>
+		<p:confirmDialog id="dlgCancelarExportador" message="Deseja realmente cancelar as alterações?"  
+	          			header="Confirmação" severity="alert" widgetVar="myDlgExcluirPessoa">  
+	       <p:commandButton id="confirmYes" value="Sim" update=":formGeral" oncomplete="myDlgExcluirPessoa.hide()"  
+	                   actionListener="#{pessoaMB.excluir()}" />  
+	       <p:commandButton id="confirmNo" value="Não" onclick="myDlgExcluirPessoa.hide()" type="button" />   
+		</p:confirmDialog>	
+		
+	</ui:define>
+</ui:composition>
+</html>

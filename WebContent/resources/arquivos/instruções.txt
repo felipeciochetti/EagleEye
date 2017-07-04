@@ -1,0 +1,4 @@
+1- CRIAR A PASTA Eagle
+2 - CRIAR A PASTA Eagle/Properties e COLOCAR O ARQUIVO email.properties
+
+

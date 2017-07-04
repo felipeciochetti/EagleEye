@@ -1,0 +1,56 @@
+body {
+    background-color: #ffffff;
+    font-size: 12px;
+    font-family: Coda-Heavy !important;
+    color: #000000;  
+   	margin: 30px !important;
+    
+	}
+.ui-widget {
+font-family: Coda-Heavy,Arial,sans-serif;
+}
+
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    border-bottom: 1px solid #AFAFAF; 
+    font-size:  13px;
+    font-weight: bold;
+}
+
+
+*********************
+
+
+.table01{
+	width:100%;
+	}
+.table01 thead th{color:#000;text-transform:uppercase;padding:10px;text-align:left;border-right:4px solid #FFF;border-bottom:4px solid #FFF;}
+.table01 tbody td{padding:10px;border-right:4px solid #FFF;border-bottom:2px solid #FFF;color:#000;vertical-align:top;}
+.label{
+	font-weight:bold;
+	 width: 15%;
+}
+.descricao{
+	 width: 35%;
+	
+}
+
+#topo{
+	width:100%;
+}
+#left {
+	position:relative;
+	width:100%;
+	color:#99f;
+	padding-bottom:20px;
+	border-bottom:3px double #666;
+}
+#centro {
+	position:relative;
+	width:100%;
+	color:#99f;
+	padding-bottom:20px;
+	border-bottom:3px double #666;
+}
+
+

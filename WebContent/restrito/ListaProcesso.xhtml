@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/TemplateDespachante.xhtml"
+xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="corpo">
+	<p:messages id="messages"  showDetail="true" autoUpdate="true" closable="true" />
+		<h:form id="frmGeral">
+				<ul class="nav nav-pills">
+  					<li role="presentation" class="active"><a href="CadastroProcesso.xhtml">Abertura</a></li>
+  					<li role="presentation"><a onclick="dlgFiltro.show()">Filtros</a></li>
+				</ul>
+			<p:dataTable id="tb"  var="proc" scrollable="10px" 
+				emptyMessage=""
+				value="#{processoListaBean.list}" 
+				rowsPerPageTemplate="5,10,15"
+				 paginator="true" rows="10"
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+				selectionMode="single" lazy="true" 
+				selection="#{processoListaBean.selectProcesso}">
+				<f:facet name="header">Processo</f:facet>
+				<p:column headerText="Ref MVW" width="100" sortBy="#{proc.referenciaMvw}" filterBy="#{proc.referenciaMvw}">
+					<h:outputText value="#{proc.referenciaMvw}" />
+				</p:column>
+				<p:column headerText="Cliente" width="200">
+					<h:outputText value="#{proc.cliente.nome}" />
+				</p:column>
+			
+		<!--  		<p:column headerText="Abertura" width="80" sortBy="#{proc.dtAbertura}" >
+					<h:outputText value="#{processoListaBean.formataData(proc.dtAbertura)}" pattern="dd/MM/yy" />
+				</p:column>
+				<p:column headerText="Cancelado" width="80" sortBy="#{proc.dtAbertura}" >
+					<h:outputText value="#{processoListaBean.formataData(proc.dtCancelamento)}" pattern="dd/MM/yy" />
+				</p:column>
+		-->		
+				<p:column headerText="Editar" width="60">
+					<p:commandButton id="edit" value="E" styleClass="btn laranja"
+						 action="AlterarProcesso" process="@this">
+						 </p:commandButton>
+					<p:tooltip for="edit" value="Editar" />
+				</p:column>
+				<p:column headerText="Cancelar" width="60">
+					<p:commandButton id="excluir" value="X" styleClass="btn vermelho"
+						 action="#{processoListaBean.preparaCancelar(proc)}" oncomplete="myDlgExcluirPessoa.show()" update="@form">
+					</p:commandButton>
+					<p:tooltip for="excluir" value="Excluir" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		<p:confirmDialog id="dlgExcluirPessoa" appendToBody="true" message="Deseja realmente cancelar este registro?"  
+	          			header="Confirmação" severity="alert" widgetVar="myDlgExcluirPessoa">  
+	       <p:commandButton id="confirmYes" value="Sim" update=":frmGeral:tb" oncomplete="myDlgExcluirPessoa.hide()"  
+	                   actionListener="#{processoListaBean.cancelar()}" />  
+	       <p:commandButton id="confirmNo" value="Não" onclick="myDlgExcluirPessoa.hide()" type="button" />   
+		</p:confirmDialog>
+		<p:dialog id="modaldlgFiltro"  appendToBody="true"  header="Filtro" widgetVar="dlgFiltro" modal="true" >
+				<h:form id="frmfiltro">
+				<p:panel id="panLinhaTempoEmb">
+					<p:panelGrid>	
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Cancelados:" for="ativo" />
+							</p:column>
+							<p:column>
+							<p:selectBooleanCheckbox id="ativo" value="#{processoListaBean.filtro.check}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel  value="Cliente: " for="cliente" title="Cliente" />
+							</p:column>
+							<p:column>
+								<p:autoComplete id="cliente"  size="80" value="#{processoListaBean.filtro.cliente}" maxResults="10" var="cliente" completeMethod="#{processoListaBean.filtro.completeCliente}" forceSelection="true"  itemLabel="#{cliente.nome}" itemValue="#{cliente}" converter="clienteConverter" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:commandButton action="#{processoListaBean.executaFiltro()}" styleClass="btn azul" value="Pesquisar" onclick="dlgFiltro.hide()" update=":frmGeral panLinhaTempoEmb" />
+							</p:column>
+							<p:column >
+							</p:column>
+						</p:row>
+				</p:panelGrid>		
+			</p:panel>
+				</h:form>	
+		</p:dialog>
+		
+	</ui:define>
+</ui:composition>

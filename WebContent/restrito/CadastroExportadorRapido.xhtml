@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+		<h:form id="formGeralExp">
+			<div align="center">
+			<p:messages id="msgRapido" for="msgRapido"  />
+					<p:panelGrid >
+						<p:row>
+						<p:column>
+							<h:outputLabel id="lbCodigoExp" value="Codígo:" for="codigoExp" />
+						</p:column>
+						<p:column>
+							<p:inputText id="codigoExp" value="#{processoBean.exportadorRapido.codigo}" maxlength="6"  />
+						</p:column>
+						<p:column>
+							<h:outputLabel id="lbDtCadastroExp" value="Data de Cadastro:" for="dtCadastroExp" />
+						</p:column>
+						<p:column>
+							<p:calendar id="dtCadastroExp" disabled="true" value="#{processoBean.exportadorRapido.dtCadastro}"  pattern="dd/MM/yy"/>
+						</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputLabel id="lbNomeExp" value="Nome:" for="nomeExp" />
+							</p:column>
+							<p:column>
+								<p:inputText id="nomeExp" value="#{processoBean.exportadorRapido.nome}" style="width: 530px"/>
+							</p:column>
+							<p:column>
+								<h:outputLabel id="lbCnpjExp" value="Cnpj:" for="cnpjExp" />
+							</p:column>
+							<p:column>
+								<p:inputMask id="cnpjExp"  value="#{processoBean.exportadorRapido.cnpj}" mask="99.999.999/9999-99" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="Endereço: " for="enderecoExp" />
+							</p:column>
+							<p:column>
+								<p:inputText id="enderecoExp" value="#{processoBean.exportadorRapido.endereco}" maxlength="150" style="width: 530px"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Cidade: " for="cidadeExp" />
+							</p:column>
+							<p:column>
+								<p:inputText id="cidadeExp" value="#{processoBean.exportadorRapido.cidade}" maxlength="15"/>
+							</p:column>
+							</p:row>
+							<p:row>
+							<p:column>
+								<p:outputLabel value="Email: " for="emailExp" />
+							</p:column>
+							<p:column>
+								<p:inputText id="emailExp" value="#{processoBean.exportadorRapido.email}" maxlength="150" style="width: 265px"/>
+							</p:column>
+							<p:column>
+								<p:outputLabel value="Referência: " for="referenciaExp" title="Referência do exportadorRapido"/>
+							</p:column>
+							<p:column>
+								<p:inputText id="referenciaExp" value="#{processoBean.exportadorRapido.referencia}" maxlength="30" />
+							</p:column>
+							</p:row>
+							<p:row>
+							<p:column>
+								<p:outputLabel value="Telefone: " for="telefoneExp" />
+							</p:column>
+							<p:column>
+								<p:inputMask id="telefoneExp" value="#{processoBean.exportadorRapido.telefone}" mask="(99) 9999-99999"/>
+							</p:column>
+							<p:column>
+							</p:column>
+							<p:column>
+							</p:column>
+						</p:row>
+				</p:panelGrid>
+			</div>
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton action="#{processoBean.gravarExportadorRapido()}" styleClass="btn verde"
+						value="Gravar"    update=":formGeralExp :formGeral:id_my_accor" onclick="modalDialogCadastros.hide()"  />
+					<p:commandButton onclick="modalDialogCadastros.hide()" ajax="false"
+						value="Cancelar" styleClass="btn vermelho" />
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+		</h:form>
+	
+		<p:confirmDialog id="dlgCancelarexportadorRapido" message="Deseja realmente cancelar as alterações?"  
+	          			header="Confirmação" severity="alert" widgetVar="myDlgExcluirPessoa">  
+	       <p:commandButton id="confirmYesExp" value="Sim" update=":formGeralExp" oncomplete="myDlgExcluirPessoa.hide()"  
+	                   actionListener="#{pessoaMB.excluir()}" />  
+	       <p:commandButton id="confirmNoExp" value="Não" onclick="myDlgExcluirPessoa.hide()" type="button" />   
+		</p:confirmDialog>	
+
+</html>

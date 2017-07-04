@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      	xmlns:h="http://java.sun.com/jsf/html"
+      	 xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <ui:composition>
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" ></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                         <li class="dropdown">
+                        <a class="dropdown-toggle " data-toggle="dropdown" ><span class="glyphicon glyphicon-user"></span><span class="caret"></span>#{session.getAttribute('usuario').usuario}</a>
+                         <ul class="dropdown-menu" role="menu">
+            				<li><p:commandLink value="Alterar Dados" onclick="dlgDialogAlterarDados.show()"  ></p:commandLink></li>
+            				<li role="separator" class="divider"></li>
+            				<li><p:commandLink value="Sair" action="#{autenticadorMB.fazerLogout()}" style="color: red" ></p:commandLink></li>
+            			</ul>
+                        </li>
+                    </ul>
+                    <h:form class="navbar-form navbar-right">
+                    <li><a style="color:white">Ref MVW: </a>
+           			<p:inputText id="firstname"  value="#{processoFiltroBean.valorPesquisa}" >
+           			<p:ajax event="blur"   listener="#{processoFiltroBean.filtroProcessoCliente()}" />
+           			</p:inputText>
+           			</li>
+          			</h:form>
+                </div>
+            </div>
+        </div>
+     <ui:include src="/usuario/AlterarDados.xhtml" /> 
+    </ui:composition>
+</html>
+ 
